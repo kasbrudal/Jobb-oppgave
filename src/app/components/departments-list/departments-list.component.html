@@ -1,15 +1,14 @@
 <!-- src/app/components/departments-list/departments-list.component.html -->
 <ul *ngIf="department && department.children && department.children.length > 0">
-  <li *ngFor="let child of department.children">
-    {{ child.Title }}
-    <input *ngIf="!child.children || child.children.length === 0" type="checkbox" [(ngModel)]="child.selected" (change)="toggleSelection(child)">
-    
-    <ng-container *ngIf="child.totalChildren !== undefined && child.totalChildren > 0">
-      ({{ child.totalChildren }})
-    </ng-container>
-    
-    <app-departments-list [department]="child"  (selectedCountChanged)="selectedCountChanged.emit($event)"></app-departments-list>
-  </li>
-</ul>
-
-
+    <li *ngFor="let child of department.children">
+      {{ child.Title }}
+      <input *ngIf="!child.children || child.children.length === 0" type="checkbox" [(ngModel)]="child.selected" (change)="toggleSelection(child)">
+      
+      <ng-container *ngIf="child.totalChildren !== undefined && child.totalChildren > 0">
+        ({{ selectedCounts[child.OID] || 0 }}/{{ child.totalChildren }})
+      </ng-container>
+      
+      <app-departments-list [department]="child" (selectedCountChanged)="updateSelectedCount($event, child.OID)"></app-departments-list>
+    </li>
+  </ul>
+  

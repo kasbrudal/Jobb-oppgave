@@ -21,5 +21,6 @@ export class DepartmentPageComponent implements OnInit {
 
   updateSelectedCount(count: number, departmentId: number): void {
     this.selectedCounts[departmentId] = count;
+    
   }
 }
