@@ -1,25 +1,30 @@
-<!-- src/app/pages/department-page/department-page.component.html -->
 <!-- Header -->
 <div class="flex header justify-center m-0">
     <h1>Departments selector</h1>
-</div>
-
-<div *ngFor="let department of departments" class="departments">
-    <h2>
-        <!-- Ikon for departments fargen -->
-        <svg [ngStyle]="{'color': department.Color}"  class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+  </div>
+  
+  <ng-container *ngFor="let department of departments">
+    <mat-expansion-panel hideToggle style="background-color: #3c3c3c; color: #ffff; margin: 10px" >
+      <mat-expansion-panel-header>
+        <!-- Icon for departments color -->
+        <mat-panel-title style=" color: #ffff;">
+          <svg [ngStyle]="{'color': department.Color}" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
             <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
-        </svg>
-
-        {{ department.Title }}
-
-        <!--Hvis departments har children kommer det en counter opp på siden-->
-        <ng-container *ngIf="department?.totalChildren !== undefined">
+          </svg>
+  
+          <h2>{{ department.Title }}
+  
+          <!--If a department has a children, the counter will show-->
+          <ng-container *ngIf="department?.totalChildren !== undefined">
             ({{ selectedCounts[department.OID] || 0 }}/{{ department?.totalChildren }})
-        </ng-container>
-    </h2>
-    <app-departments-list [department]="department" (selectedCountChanged)="updateSelectedCount($event, department.OID)"></app-departments-list>
-</div>
-
-
+          </ng-container>
+        </h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <!-- Departments children -->
+      <app-departments-list [department]="department" (selectedCountChanged)="updateSelectedCount($event, department.OID)"></app-departments-list>
+  
+    </mat-expansion-panel>
+  </ng-container>
   

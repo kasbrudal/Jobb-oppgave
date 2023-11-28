@@ -6,5 +6,7 @@
     border: 3px solid rgb(103, 102, 102);
     margin: 10px;
     border-radius: 5px;
-    
+    display: flex;
+    flex-direction: column;
+
 }

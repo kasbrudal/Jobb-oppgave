@@ -12,7 +12,7 @@ export class DepartmentPageComponent implements OnInit {
   selectedCounts: { [key: number]: number } = {};
 
   constructor(private departmentsService: DepartmentsService) {}
-
+  //Printer ut alle departments fra JSON arrayet
   ngOnInit(): void {
     this.departmentsService.getData().subscribe((result) => { 
       this.departments = result;
@@ -21,6 +21,6 @@ export class DepartmentPageComponent implements OnInit {
 
   updateSelectedCount(count: number, departmentId: number): void {
     this.selectedCounts[departmentId] = count;
-    
   }
+  
 }

@@ -1,25 +1,22 @@
-<!-- src/app/components/departments-list/departments-list.component.html -->
-<ul *ngIf="department && department.children && department.children.length > 0"  style="list-style: none;">
-    <li *ngFor="let child of department.children" >
+<ul *ngIf="department && department.children"  style="list-style: none;">
+    <li *ngFor="let child of department.children">
         <h2 class="black">
             <svg [ngStyle]="{'color': department.Color}" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
                 <path d="m19.822 7.431-4.846-7A1 1 0 0 0 14.153 0H1a1 1 0 0 0-.822 1.569L4.63 8 .178 14.431A1 1 0 0 0 1 16h13.153a1.001 1.001 0 0 0 .823-.431l4.846-7a1 1 0 0 0 0-1.138Z"/>
             </svg>
 
-            {{ child.Title }}      
-
-            <input 
-                *ngIf="!child.children || child.children.length === 0" 
+            {{ child.Title }}
+            <ng-container *ngIf="child.totalChildren !== undefined && child.totalChildren > 0">
+                ({{ selectedCounts[child.OID] || 0 }}/{{ child.totalChildren }})
+            </ng-container>
+            
+            <input      
                 type="checkbox" 
                 [(ngModel)]="child.selected" 
                 (change)="toggleSelection(child)"
             >
-            <ng-container *ngIf="child.totalChildren !== undefined && child.totalChildren > 0">
-                ({{ selectedCounts[child.OID] || 0 }}/{{ child.totalChildren }})
-             </ng-container>
-        </h2>
-        
-      <app-departments-list [department]="child" (selectedCountChanged)="updateSelectedCount($event, child.OID)"></app-departments-list>
+            
+        </h2>       
+        <app-departments-list [department]="child" (selectedCountChanged)="updateSelectedCount($event, child.OID)"></app-departments-list>
     </li>
-  </ul>
-  
+</ul>

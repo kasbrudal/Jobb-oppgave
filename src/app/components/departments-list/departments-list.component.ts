@@ -12,7 +12,8 @@ export class DepartmentsListComponent {
   @Output() selectedCountChanged = new EventEmitter<number>();
 
   selectedDepartments: number[] = [];
-  selectedCounts: { [key: number]: number } = {}; // Add this line
+  selectedCounts: { [key: number]: number } = {};
+
 
   toggleSelection(department: Department): void {
     const index = this.selectedDepartments.indexOf(department.OID);
@@ -22,10 +23,13 @@ export class DepartmentsListComponent {
       this.selectedDepartments.splice(index, 1);
     }
 
+    // Checking if the correct OID is selected
+    console.log('Selected departmentss:', this.selectedDepartments);
     this.selectedCountChanged.emit(this.selectedDepartments.length);
   }
 
   updateSelectedCount(count: number, departmentId: number): void {
     this.selectedCounts[departmentId] = count;
   }
+  
 }
