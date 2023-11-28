@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DepartmentPageComponent } from './pages/department-page/department-page.component';
 import { DepartmentsListComponent } from './components/departments-list/departments-list.component';
 import { DepartmentsService } from './services/departments.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DepartmentsService } from './services/departments.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    MatExpansionModule
   ],
   providers: [
     provideClientHydration(),

@@ -2,3 +2,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Love+Ya+Like+A+Sister&display=swap');
+
+body{
+    margin: 0;
+    background-color:#1e1e1e ;
+    color: #ffff;
+    font-family: 'roboto', sans-serif;}
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
